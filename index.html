@@ -34,20 +34,25 @@
             position: relative;
         }
 
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('images/Astrophysics-Protostar-Art.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: -1;
-    opacity: 0.65; /* Сделает изображение тусклее */
-}
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('images/Astrophysics-Protostar-Art.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -1;
+            opacity: 0.65;
+        }
+
+        /* Резервный фон если изображение не загрузится */
+        .no-background-image body::before {
+            background-image: none;
+        }
 
         .container {
             max-width: 1000px;
@@ -75,6 +80,18 @@ body::before {
             border: 3px solid var(--color-primary);
             box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
             margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #1a2639, #2d4263); /* Фон если фото не загрузится */
+        }
+
+        .profile-img::after {
+            content: "Photo";
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            color: var(--color-gray);
+            font-size: 0.9rem;
         }
 
         h1, h2, h3 {
@@ -89,6 +106,7 @@ body::before {
             background: linear-gradient(45deg, #d4af37, #f5e9c9);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .tagline {
@@ -269,7 +287,10 @@ body::before {
     <div class="container">
         <header>
             <div class="profile">
-                <img src="images/sofya_photo.jpg" alt="Sofya Drobchik" class="profile-img">
+                <img src="images/sofya_photo.jpg" alt="Sofya Drobchik" class="profile-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div style="display:none; width:180px; height:180px; border-radius:50%; border:3px solid var(--color-primary); display:flex; align-items:center; justify-content:center; background:linear-gradient(45deg, #1a2639, #2d4263); color:var(--color-gray); margin-bottom:1.5rem;">
+                    Photo
+                </div>
                 <h1>Sofya Drobchik</h1>
                 <p class="tagline">Theoretical Astrophysics & Nonlinear Dynamics</p>
 
@@ -287,9 +308,7 @@ body::before {
         </header>
 
         <nav>
-            <a href="#about">About</a>
-            <a href="#research">Research</a>
-            <a href="#publications">Publications</a>
+            <a href="#news">News</a>
             <a href="#scicomm">Science Communication</a>
             <a href="#teaching">Teaching</a>
             <a href="#contact">Contact</a>
@@ -302,7 +321,7 @@ body::before {
                 <div class="news-item">
                     <h3>Evolution of Toomre Parameter in Protoplanetary Disks</h3>
                     <span class="news-date">September 2025</span>
-                    <p>My current research project, supervised by Sergey Khaibrakhmanov, investigates the stability and evolution of protoplanetary disks through analysis of the Toomre parameter. The work explores how gravitational instabilities may seed the formation of planets in early stellar systems. <a href="#">Read abstract</a></p>
+                    <p>My current research project, supervised by Sergey Khaibrakhmanov, investigates the stability and evolution of protoplanetary disks through analysis of the Toomre parameter. The work explores how gravitational instabilities may seed the formation of planets in early stellar systems.</p>
                 </div>
 
                 <div class="news-item">
@@ -344,27 +363,20 @@ body::before {
             </section>
 
             <section id="teaching">
-    <h2>Teaching</h2>
+                <h2>Teaching</h2>
+                <p>Since 2024, I have been a teacher of astronomy at the Saint Petersburg Youth Mathematical School, where I design and deliver courses for motivated high school students passionate about space and mathematical thinking. Since 2022, I have also worked as a private tutor in mathematics, physics, and computer science, helping students develop deep conceptual understanding and problem-solving skills.</p>
+                <p>Teaching is not just a profession for me — it is a vocation. I am deeply committed to making complex ideas accessible and inspiring curiosity in my students. My dream is to one day lead my own university-level courses: a rigorous course in advanced mathematics and a special topics seminar in theoretical astrophysics, where I can share the beauty and power of these disciplines with the next generation of scientists.</p>
+            </section>
 
-    <p>Since 2024, I have been a teacher of astronomy at the Saint Petersburg Youth Mathematical School, where I design and deliver courses for motivated high school students passionate about space and mathematical thinking. Since 2022, I have also worked as a private tutor in mathematics, physics, and computer science, helping students develop deep conceptual understanding and problem-solving skills.</p>
-
-    <p>Teaching is not just a profession for me — it is a vocation. I am deeply committed to making complex ideas accessible and inspiring curiosity in my students. My dream is to one day lead my own university-level courses: a rigorous course in advanced mathematics and a special topics seminar in theoretical astrophysics, where I can share the beauty and power of these disciplines with the next generation of scientists.</p>
-</section>
-
-<section id="contact">
-    <h2>Contact</h2>
-
-    <p>I'm always open to collaboration in areas at the intersection of astrophysics, mathematics, education, and science communication. Whether you'd like to discuss research, teaching, writing, or a new creative project — I'd love to hear from you.</p>
-
-    <p>
-        <strong>Telegram:</strong> <a href="https://t.me/drobchik_sa" target="_blank">@drobchik_sa</a><br>
-        <strong>Email:</strong> <a href="mailto:s.a.drobchik@gmail.com">s.a.drobchik@gmail.com</a>
-    </p>
-
-    <p>Looking forward to connecting and exploring ideas together.</p>
-</section>
-
-
+            <section id="contact">
+                <h2>Contact</h2>
+                <p>I'm always open to collaboration in areas at the intersection of astrophysics, mathematics, education, and science communication. Whether you'd like to discuss research, teaching, writing, or a new creative project — I'd love to hear from you.</p>
+                <p>
+                    <strong>Telegram:</strong> <a href="https://t.me/drobchik_sa" target="_blank">@drobchik_sa</a><br>
+                    <strong>Email:</strong> <a href="mailto:s.a.drobchik@gmail.com">s.a.drobchik@gmail.com</a>
+                </p>
+                <p>Looking forward to connecting and exploring ideas together.</p>
+            </section>
         </main>
 
         <footer>
@@ -372,5 +384,14 @@ body::before {
             <p>The last enemy that shall be destroyed is death. — J.K. Rowling</p>
         </footer>
     </div>
+
+    <script>
+        // Проверка загрузки фонового изображения
+        const bgImage = new Image();
+        bgImage.src = 'images/Astrophysics-Protostar-Art.jpg';
+        bgImage.onerror = function() {
+            document.body.classList.add('no-background-image');
+        };
+    </script>
 </body>
 </html>
